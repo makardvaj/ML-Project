@@ -18,7 +18,7 @@ joblib.dump(model, 'drug_disease_model.pkl')
 joblib.dump(drug_encoder, 'drug_encoder.pkl')
 joblib.dump(disease_encoder, 'disease_encoder.pkl')
 
-print("✅ Model and encoders saved successfully!")
+print("Model and encoders saved successfully!")
 
 
 # ============================================================
@@ -29,7 +29,7 @@ model = joblib.load('drug_disease_model.pkl')
 drug_encoder = joblib.load('drug_encoder.pkl')
 disease_encoder = joblib.load('disease_encoder.pkl')
 
-print("✅ Model and encoders loaded successfully!")
+print("Model and encoders loaded successfully!")
 
 
 # ============================================================
@@ -51,14 +51,14 @@ def predict_association(drug_id, disease_id):
         prob = model.predict_proba([[drug_encoded, disease_encoded]])[0][1]
 
         if pred == 1:
-            print(f"✅ Predicted: {drug_id} is likely associated with {disease_id}")
+            print(f"Predicted: {drug_id} is likely associated with {disease_id}")
         else:
             print(f"❌ Predicted: No known association between {drug_id} and {disease_id}")
 
         print(f"Confidence: {prob:.2f}")
 
     except Exception as e:
-        print(f"⚠️ Error: {e}")
+        print(f"Error: {e}")
 
 
 # ============================================================
@@ -74,12 +74,13 @@ predict_association("DB01050", "MESH:D004194")
 # Step 5: Optional – View some valid IDs
 # ============================================================
 
-print("\n🔍 Example valid Drug IDs:")
+print("\nExample valid Drug IDs:")
 print(list(drug_encoder.classes_)[:10])
 
-print("\n🔍 Example valid Disease IDs:")
+print("\nExample valid Disease IDs:")
 print(list(disease_encoder.classes_)[:10])
 
 # ============================================================
 # End of Script
 # ============================================================
+
