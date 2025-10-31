@@ -29,7 +29,7 @@ import joblib
 # Replace this path with your final dataset CSV
 df = pd.read_csv("final_drug_disease_dataset.csv")
 
-print(f"✅ Data loaded. Shape: {df.shape}")
+print(f"Data loaded. Shape: {df.shape}")
 print(df.head())
 
 
@@ -56,7 +56,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-print(f"✅ Data split: Train={len(X_train)}, Test={len(X_test)}")
+print(f"Data split: Train={len(X_train)}, Test={len(X_test)}")
 
 
 # ============================================================
@@ -68,7 +68,7 @@ model = RandomForestClassifier(
 )
 model.fit(X_train, y_train)
 
-print("✅ Model training complete!")
+print("Model training complete!")
 
 
 # ============================================================
@@ -76,7 +76,7 @@ print("✅ Model training complete!")
 # ============================================================
 
 y_pred = model.predict(X_test)
-print("\n📊 Model Evaluation Results:")
+print("\nModel Evaluation Results:")
 print(classification_report(y_test, y_pred))
 
 cm = confusion_matrix(y_test, y_pred)
@@ -112,7 +112,7 @@ joblib.dump(model, 'drug_disease_model.pkl')
 joblib.dump(drug_encoder, 'drug_encoder.pkl')
 joblib.dump(disease_encoder, 'disease_encoder.pkl')
 
-print("✅ Model and encoders saved successfully!")
+print("Model and encoders saved successfully!")
 
 
 # ============================================================
@@ -123,7 +123,7 @@ model = joblib.load('drug_disease_model.pkl')
 drug_encoder = joblib.load('drug_encoder.pkl')
 disease_encoder = joblib.load('disease_encoder.pkl')
 
-print("✅ Model and encoders loaded successfully!")
+print("Model and encoders loaded successfully!")
 
 
 # ============================================================
@@ -143,14 +143,14 @@ def predict_association(drug_id, disease_id):
         prob = model.predict_proba([[drug_encoded, disease_encoded]])[0][1]
 
         if pred == 1:
-            print(f"✅ Predicted: {drug_id} is likely associated with {disease_id}")
+            print(f"Predicted: {drug_id} is likely associated with {disease_id}")
         else:
-            print(f"❌ Predicted: No known association between {drug_id} and {disease_id}")
+            print(f"Predicted: No known association between {drug_id} and {disease_id}")
 
         print(f"Confidence: {prob:.2f}")
 
     except Exception as e:
-        print(f"⚠️ Error: {e}")
+        print(f"Error: {e}")
 
 
 # ============================================================
@@ -175,3 +175,4 @@ print(list(disease_encoder.classes_)[:10])
 # ============================================================
 # END OF SCRIPT
 # ============================================================
+
